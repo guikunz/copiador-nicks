@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Instalar Copiador de Nicks</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .botao-arrastavel {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: grab;
+        }
+    </style>
+</head>
+<body>
+    <h2>Como instalar a ferramenta de copiar nicks:</h2>
+    <p>1. Deixe sua Barra de Favoritos visível (Ctrl + Shift + B no Chrome).</p>
+    <p>2. Clique, segure e <strong>arraste o botão verde abaixo</strong> para a sua Barra de Favoritos.</p>
+    
+    <a class="botao-arrastavel" href="javascript:(function(){var nicks=[];var linhas=document.querySelectorAll('table tbody tr');linhas.forEach(function(linha){var colunaNick=linha.querySelector('td:nth-child(3)');if(colunaNick){var textoLimpo=colunaNick.innerText.split('\n')[0].trim();if(textoLimpo)nicks.push(textoLimpo);}});if(nicks.length>0){navigator.clipboard.writeText(nicks.join('\n')).then(function(){alert('✅ '+nicks.length+' nicks copiados com sucesso!\n\nAgora é só ir na sua planilha e dar Ctrl+V na Coluna A.');}).catch(function(err){alert('Erro ao copiar. Tente clicar na tela da tabela uma vez antes de apertar o botão.');});}else{alert('Nenhum nick encontrado na tabela.');}})();">
+        📋 Copiar Nicks
+    </a>
+
+    <p><br>3. Quando estiver na página da tabela, basta clicar no favorito "📋 Copiar Nicks"!</p>
+</body>
+</html>
