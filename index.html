@@ -4,28 +4,51 @@
     <meta charset="UTF-8">
     <title>Instalar Copiador de Nicks</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; padding: 20px; }
         .botao-arrastavel {
-            display: inline-block;
-            padding: 15px 25px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: grab;
+            display: inline-block; padding: 15px 25px; background-color: #28a745; color: white;
+            text-decoration: none; font-weight: bold; border-radius: 5px; cursor: grab; margin-bottom: 20px;
+        }
+        .botao-celular {
+            display: inline-block; padding: 10px 20px; background-color: #007bff; color: white;
+            border: none; font-weight: bold; border-radius: 5px; cursor: pointer; font-size: 16px;
+        }
+        .caixa-codigo {
+            display: none; /* Escondido por padrão */
         }
     </style>
 </head>
 <body>
-    <h2>Como instalar a ferramenta de copiar nicks:</h2>
+    <h2>Para Computador:</h2>
     <p>1. Deixe sua Barra de Favoritos visível (Ctrl + Shift + B no Chrome).</p>
     <p>2. Clique, segure e <strong>arraste o botão verde abaixo</strong> para a sua Barra de Favoritos.</p>
     
-    <a class="botao-arrastavel" href="javascript:(function(){var nicks=[];var linhas=document.querySelectorAll('table tbody tr');linhas.forEach(function(linha){var colunaNick=linha.querySelector('td:nth-child(3)');if(colunaNick){var textoLimpo=colunaNick.innerText.split('\n')[0].trim();if(textoLimpo)nicks.push(textoLimpo);}});if(nicks.length>0){navigator.clipboard.writeText(nicks.join('\n')).then(function(){alert('✅ '+nicks.length+' nicks copiados com sucesso!\n\nAgora é só ir na sua planilha e dar Ctrl+V na Coluna A.');}).catch(function(err){alert('Erro ao copiar. Tente clicar na tela da tabela uma vez antes de apertar o botão.');});}else{alert('Nenhum nick encontrado na tabela.');}})();">
+    <a class="botao-arrastavel" href="javascript:(function(){var nicks=[];var linhas=document.querySelectorAll('table tbody tr');linhas.forEach(function(linha){var colunaNick=linha.querySelector('td:nth-child(3)');if(colunaNick){var textoLimpo=colunaNick.innerText.split('\n')[0].trim();if(textoLimpo)nicks.push(textoLimpo);}});if(nicks.length>0){navigator.clipboard.writeText(nicks.join('\n')).then(function(){alert('✅ '+nicks.length+' nicks copiados com sucesso!\n\nAgora é só colar onde precisar.');}).catch(function(err){alert('Erro ao copiar. Toque na tela uma vez antes de ativar o script.');});}else{alert('Nenhum nick encontrado na tabela.');}})();">
         📋 Copiar Nicks
     </a>
+    <p>3. Quando estiver na página dos nicks do system e com o filtro aplicado para a patente que deseja, basta clicar no favorito "📋 Copiar Nicks"!</p>
 
-    <p><br>3. Quando estiver na página dos nicks do system e com o filtro aplicado para a patente que deseja, basta clicar no favorito "📋 Copiar Nicks"!</p>
+    <hr style="margin: 40px 0;">
+
+    <h2>Para Celular (Android/iOS):</h2>
+    <p>No celular não dá para arrastar, então siga os passos:</p>
+    
+    <textarea id="codigoScript" class="caixa-codigo">javascript:(function(){var nicks=[];var linhas=document.querySelectorAll('table tbody tr');linhas.forEach(function(linha){var colunaNick=linha.querySelector('td:nth-child(3)');if(colunaNick){var textoLimpo=colunaNick.innerText.split('\n')[0].trim();if(textoLimpo)nicks.push(textoLimpo);}});if(nicks.length>0){navigator.clipboard.writeText(nicks.join('\n')).then(function(){alert('✅ '+nicks.length+' nicks copiados com sucesso!');}).catch(function(err){alert('Erro ao copiar. Toque na tela da tabela e tente novamente.');});}else{alert('Nenhum nick encontrado na tabela.');}})();</textarea>
+    
+    <button class="botao-celular" onclick="copiarCodigo()">📱 1. Copiar Código para o Celular</button>
+    
+    <p style="text-align: left; max-width: 400px; margin: 20px auto;">
+        2. Salve esta página nos seus favoritos (clique na estrelinha ⭐ do navegador).<br><br>
+        3. Edite o favorito que você acabou de salvar: mude o nome para <strong>"Copiar Nicks"</strong> e, no lugar do Link/URL, <strong>cole o código</strong> que você copiou no Passo 1. Salve.
+    </p>
+
+    <script>
+        function copiarCodigo() {
+            var codigo = document.getElementById("codigoScript").value;
+            navigator.clipboard.writeText(codigo).then(function() {
+                alert("Código copiado! Agora salve a página nos favoritos e edite a URL colando esse código.");
+            });
+        }
+    </script>
 </body>
 </html>
